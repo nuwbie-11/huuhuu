@@ -1,0 +1,120 @@
+
+<!-- buatlah sebuah web sederhana yg terdiri dari 2 input (username, password) dimasukan ke dalam form dan 
+terdapat button untuk submit/login -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="tugas.css">
+</head>
+<body id="body">
+
+
+    <div class="modal">
+        <!-- tempat modal -->
+        <div class="modal-dialog">
+            <!-- tempat dialog -->
+            <div class="modal-content">
+                <!-- tempat content -->
+                <div class="modal-header">
+                    <!-- tempat header -->
+                    Log In Status
+                    <div class="modal-status">
+                        Sukses
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="regis-container">
+            <form name="tabel">
+                <img class="user" src="Mungutin/profile.svg" alt="">
+                <h2>Welcome</h2>
+                <h3>Log In</h3>
+
+                <div class="input-sec one">
+                    <div class="icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Username</h5>
+                        <input type="text" class="input" name="nama" id="user">
+                    </div>
+                </div>
+
+                <div class="input-sec two">
+                    <div class="icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h5>Password</h5>
+                        <input type="password" class="input" name="password" id="pw">
+                    </div>
+                </div>
+
+                <a href="#">Already Have Account?</a>
+                <button type="submit" class="btn" data-toggle='modal' onclick="check()">
+                Submit    
+                </button>
+                <p id="error"></p>
+            </form>
+        </div>
+        
+    </div>
+
+    <script>
+        let btn = document.querySelector('button[data-toggle="modal"]');
+        let modal = document.querySelector('.modal');
+        let body = document.getElementById('body')
+        
+
+        btn.addEventListener("click", function(event){
+            event.preventDefault()
+        });
+        
+        // btn.addEventListener('click',
+        // function(){
+        //     modal.classList.add('show');
+        // });
+
+        modal.addEventListener('click',
+        function(){
+            this.classList.remove('show');
+            normalize()
+        });
+
+        modal.querySelector('.modal-content').addEventListener('click',
+        function(e){
+            e.stopPropagation();
+        });
+        function success(){
+            body.style.background="#2cf56c"
+        };
+        function normalize(){
+            body.style.background ="linear-gradient(to right, white,#e3e3e3,white)"
+            document.getElementById("error").innerHTML = ""
+        };
+        function check(){
+            var username = document.getElementById('user').value;
+            var password = document.getElementById('pw').value;
+            
+            if (username == 'pweb_C' && password == 123123){
+                document.getElementById("error").innerHTML = ""
+                modal.classList.add('show');
+                success()
+            }else{
+                document.getElementById("error").innerHTML = "<span style='color: red;'>invalid username or password</span>";
+            }
+        };
+
+    
+
+
+    </script>
+</body>
+</html>
